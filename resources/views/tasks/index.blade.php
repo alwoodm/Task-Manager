@@ -54,7 +54,7 @@
                         </a>
 
                         <!-- Przycisk Usuń -->
-                        <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="inline" onsubmit="return confirm('Czy na pewno chcesz usunąć to zadanie: \'{{ $task->title }}\'?');">
+                        <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" title="Usuń zadanie" class="p-2 rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition-colors duration-150">

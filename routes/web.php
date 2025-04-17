@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController; // Dodaj import TaskController
+use App\Http\Controllers\LanguageController; // Import kontrolera języka
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,6 +12,9 @@ Route::get('/', function () {
     }
     return view('welcome');
 });
+
+// Trasa do zmiany języka (dostępna dla wszystkich)
+Route::get('language/{locale}', [LanguageController::class, 'changeLanguage'])->name('language.switch');
 
 // Grupa tras wymagających uwierzytelnienia
 Route::middleware('auth')->group(function () {

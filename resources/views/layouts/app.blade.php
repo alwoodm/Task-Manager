@@ -25,8 +25,8 @@
         {{-- Powiadomienia z obsługą dark mode --}}
         @if (session('success'))
             <div class="bg-green-100 dark:bg-green-900 border-l-4 border-green-500 dark:border-green-600 text-green-700 dark:text-green-200 p-4 mb-6 rounded-md shadow-sm" role="alert">
-                <p class="font-bold">Sukces</p>
-                <p>{{ session('success') }}</p>
+                <p class="font-bold">{{ __('app.success') }}</p>
+                <p>{{ is_array(session('success')) ? json_encode(session('success')) : session('success') }}</p>
             </div>
         @endif
 

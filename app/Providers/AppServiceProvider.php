@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Ustawienie języka aplikacji na podstawie sesji
+        \Illuminate\Support\Facades\Schema::defaultStringLength(191);
+        
+        if (session()->has('locale')) {
+            app()->setLocale(session('locale'));
+        }
     }
 }
