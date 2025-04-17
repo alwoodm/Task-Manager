@@ -44,7 +44,7 @@
         {{-- Główna treść z obsługą dark mode --}}
         <main class="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-6 md:p-8 mb-8">
             @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow mb-6 rounded-md p-4">
+                <header class="bg-white dark:bg-gray-800 shadow mb-8 rounded-md p-4">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
