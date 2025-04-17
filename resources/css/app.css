@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fix input styling in dark mode */
+@layer base {
+    /* Improved text input styles for dark mode */
+    .dark input[type="text"],
+    .dark input[type="email"],
+    .dark input[type="password"],
+    .dark input[type="number"],
+    .dark input[type="date"],
+    .dark input[type="time"],
+    .dark textarea,
+    .dark select {
+        @apply bg-gray-800 border-gray-700 text-white focus:border-indigo-600 focus:ring focus:ring-indigo-600 focus:ring-opacity-50;
+    }
+
+    /* Improved checkbox styling for dark mode */
+    .dark input[type="checkbox"] {
+        @apply bg-gray-800 border-gray-700 text-indigo-600 rounded focus:ring-indigo-600;
+    }
+
+    /* Fix for task cards in dark mode */
+    .dark .task-card {
+        @apply bg-gray-800 border-gray-700 shadow-none;
+    }
+
+    /* Fix for task details in dark mode */
+    .dark .task-details {
+        @apply bg-gray-800 text-white;
+    }
+}
