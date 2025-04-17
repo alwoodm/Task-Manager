@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController; // Dodaj import TaskController
 use App\Http\Controllers\LanguageController; // Import kontrolera języka
+use Illuminate\Support\Facades\Auth; // Dodajemy import Auth
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

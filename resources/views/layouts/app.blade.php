@@ -20,8 +20,8 @@
     {{-- Używamy nowego layoutu nawigacji z Breeze --}}
     @include('layouts.navigation')
 
-    {{-- Dodajemy flex-grow, aby główna treść wypełniała dostępną przestrzeń --}}
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
+    {{-- Dodajemy odstęp (mt-6) między navbarem a główną treścią --}}
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex-grow mt-6">
         {{-- Powiadomienia z obsługą dark mode --}}
         @if (session('success'))
             <div class="bg-green-100 dark:bg-green-900 border-l-4 border-green-500 dark:border-green-600 text-green-700 dark:text-green-200 p-4 mb-6 rounded-md shadow-sm" role="alert">
@@ -81,7 +81,7 @@
 
     {{-- Stopka z obsługą dark mode i linkiem --}}
     <footer class="text-center text-sm text-gray-500 dark:text-gray-400 py-4 mt-auto">
-        &copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }} Task Manager.
+        &copy; {{ date('Y') }} Task Manager.
         Made by <a href="https://alwood.ovh" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-600 dark:hover:text-blue-400">alwood</a>.
     </footer>
 </body>
