@@ -22,6 +22,15 @@
             @enderror
         </div>
 
+        <div>
+            <label for="priority" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Priority</label>
+            <select name="priority" id="priority" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-white rounded-md">
+                <option value="1" {{ old('priority') == 1 ? 'selected' : '' }}>Low</option>
+                <option value="2" {{ old('priority', 2) == 2 ? 'selected' : '' }}>Medium</option>
+                <option value="3" {{ old('priority') == 3 ? 'selected' : '' }}>High</option>
+            </select>
+        </div>
+
         <div class="flex items-center">
             <input type="checkbox" name="is_completed" id="is_completed" value="1" {{ old('is_completed') ? 'checked' : '' }} class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded">
             <label for="is_completed" class="ml-2 block text-sm text-gray-900 dark:text-gray-300">Mark as Completed</label>

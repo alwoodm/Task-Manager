@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Edit Task</h1>
 
-    <form action="{{ route('tasks.update', $task) }}" method="POST" class="space-y-6">
+    <form action="{{ route('tasks.update', $task->id) }}" method="POST" class="space-y-6">
         @csrf
         @method('PUT')
         
@@ -21,6 +21,15 @@
             @error('description')
                 <p class="mt-1 text-xs text-red-600 dark:text-red-400">{{ $message }}</p>
             @enderror
+        </div>
+
+        <div>
+            <label for="priority" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Priority</label>
+            <select name="priority" id="priority" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-white rounded-md">
+                <option value="1" {{ old('priority', $task->priority) == 1 ? 'selected' : '' }}>Low</option>
+                <option value="2" {{ old('priority', $task->priority) == 2 ? 'selected' : '' }}>Medium</option>
+                <option value="3" {{ old('priority', $task->priority) == 3 ? 'selected' : '' }}>High</option>
+            </select>
         </div>
 
         <div class="flex items-center">
