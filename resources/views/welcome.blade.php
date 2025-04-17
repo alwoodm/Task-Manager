@@ -222,7 +222,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <p class="text-gray-500 dark:text-gray-400">&copy; {{ date('Y') }} Task Manager</p>
-                <p class="text-gray-500 dark:text-gray-400 mt-2">Made with ❤️ by <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">alwood</a></p>
+                <p class="text-gray-500 dark:text-gray-400 mt-2">Made with ❤️ by <a href="https://alwood.ovh" class="text-blue-600 dark:text-blue-400 hover:underline">alwood</a></p>
             </div>
         </div>
     </footer>

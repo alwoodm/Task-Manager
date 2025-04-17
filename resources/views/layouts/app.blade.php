@@ -57,7 +57,7 @@
 
     <footer class="text-center text-sm text-gray-500 dark:text-gray-400 py-4 mt-auto">
         &copy; {{ date('Y') }} Task Manager.
-        Made by <a href="#" class="underline hover:text-blue-600 dark:hover:text-blue-400">alwood</a>.
+        Made by <a href="https://alwood.ovh" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-600 dark:hover:text-blue-400">alwood</a>.
     </footer>
 </body>
 </html>

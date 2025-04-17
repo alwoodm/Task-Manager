@@ -1,61 +1,234 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Task Manager
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A simple but powerful task management application built with Laravel and modern frontend technologies.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- User authentication and authorization
+- Create, read, update, and delete tasks
+- Mark tasks as completed/not completed
+- Responsive design with dark mode support
+- Simple and intuitive user interface
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technologies Used
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel 12
+- **Frontend**: Tailwind CSS, Alpine.js
+- **Database**: SQLite (default) / MySQL (configurable)
+- **Development**: Vite for frontend assets
 
-## Learning Laravel
+## Local Development Setup
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Requirements
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP 8.2 or higher
+- Composer
+- Node.js and NPM
+- (Optional) Docker and Docker Compose
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Standard Setup
 
-## Laravel Sponsors
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/task-manager.git
+   cd task-manager
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. Install PHP dependencies
+   ```bash
+   composer install
+   ```
 
-### Premium Partners
+3. Install JavaScript dependencies
+   ```bash
+   npm install
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+4. Create and configure environment file
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Contributing
+5. Create the database
+   ```bash
+   touch database/database.sqlite
+   php artisan migrate --seed # This will seed the database with sample tasks
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. Start the development servers
+   ```bash
+   # In one terminal
+   php artisan serve
+   
+   # In another terminal
+   npm run dev
+   ```
 
-## Code of Conduct
+7. Visit the application at http://localhost:8000
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Project Architecture
 
-## Security Vulnerabilities
+### Directory Structure
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The application follows the standard Laravel directory structure with some customizations:
+
+- `app/Models` - Contains all Eloquent models (Task, User)
+- `app/Http/Controllers` - Contains all controllers for handling requests
+- `app/Http/Requests` - Contains form request validation classes
+- `resources/views` - Contains all Blade templates
+- `resources/css` - Contains Tailwind CSS customizations
+- `resources/js` - Contains Alpine.js components
+
+### Key Components
+
+#### Models
+
+- `User` - Standard Laravel authentication model with tasks relationship
+- `Task` - The core model representing a task with properties:
+  - title - Task title
+  - description - Detailed task description
+  - completed - Boolean status flag
+  - user_id - Foreign key to the user who owns the task
+
+#### Controllers
+
+- `TaskController` - Handles CRUD operations for tasks
+- `DashboardController` - Manages the main dashboard display
+
+#### Services
+
+The application implements a service layer to separate business logic:
+
+- `TaskService` - Manages task creation, updating, and filtering
+
+### Database Structure
+
+The application uses migrations to define the database schema:
+
+- `users` - Standard Laravel authentication table
+- `tasks` - Stores all user tasks with relationships
+- `sessions` - Manages user sessions
+
+## Application Features
+
+### Authentication
+
+- Breeze-powered authentication system
+- Email verification (optional)
+- Password reset functionality
+
+### Task Management
+
+- Task creation with form validation
+- Task listing with filters (all, completed, incomplete)
+- Task updating
+- Task completion toggling
+- Task deletion with confirmation
+
+### UI Components
+
+- Custom Blade components for:
+  - Task cards
+  - Form inputs
+  - Modal dialogs
+  - Alert messages
+
+### Frontend Integration
+
+The frontend leverages:
+
+- Tailwind CSS for styling with custom components
+- Alpine.js for interactive components
+- Laravel Vite integration for asset compilation
+- Dark mode toggle with browser storage persistence
+
+## Customization
+
+### Themes
+
+The application supports both light and dark themes. The theme selection uses Alpine.js and is saved in the browser's local storage:
+
+```javascript
+x-data="{ darkMode: localStorage.getItem('dark') === 'true' }" 
+x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
+```
+
+### Languages
+
+Translations are stored in the `resources/lang/{locale}` directories. The application currently supports:
+
+- English (en) - Default
+
+To add a new language, create a new directory in `resources/lang/` with the appropriate locale code and translate the strings in:
+
+- `app.php` - Application-specific strings
+- `auth.php` - Authentication strings
+- `pagination.php` - Pagination strings
+- `validation.php` - Validation strings
+
+## Extending the Application
+
+### Adding New Task Attributes
+
+To add new attributes to tasks:
+
+1. Create a new migration:
+   ```bash
+   php artisan make:migration add_priority_to_tasks_table
+   ```
+
+2. Update the Task model with the new attribute
+
+3. Modify the form views and controllers to handle the new attribute
+
+### Adding New Features
+
+The modular architecture makes it easy to add new features:
+
+1. Create new controllers using:
+   ```bash
+   php artisan make:controller FeatureController --resource
+   ```
+
+2. Define routes in `routes/web.php`
+
+3. Create corresponding views in `resources/views`
+
+## Testing
+
+The application includes both feature and unit tests:
+
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test suite
+php artisan test --testsuite=Feature
+
+# Run with coverage report
+php artisan test --coverage
+```
+
+## Artisan Commands
+
+The application includes custom Artisan commands:
+
+```bash
+# List all available commands
+php artisan list
+
+# Cleanup expired tasks
+php artisan tasks:cleanup
+
+# Generate task report
+php artisan tasks:report
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Credits
+
+Created and maintained by [alwood](https://alwood.ovh).
