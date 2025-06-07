@@ -1,4 +1,8 @@
-FROM php:8.2-cli
+FROM php:8.3-fpm
+
+# Argumenty dla konfiguracji użytkownika
+ARG user=laravel
+ARG uid=1000
 
 # Instalacja zależności systemowych
 RUN apt-get update && apt-get install -y \
@@ -15,26 +19,22 @@ RUN apt-get update && apt-get install -y \
     sqlite3
 
 # Instalacja rozszerzeń PHP
-RUN docker-php-ext-install mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip intl
 RUN docker-php-ext-install pdo_sqlite
 
 # Instalacja Composera
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Tworzenie użytkownika systemowego
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user && chown -R $user:$user /home/$user
+
 # Ustawienie katalogu roboczego
-WORKDIR /var/www/html
+WORKDIR /www
 
-# Kopiowanie plików aplikacji
-COPY . /var/www/html
+# Kopiowanie plików konfiguracyjnych PHP
+COPY docker/php/local.ini /usr/local/etc/php/conf.d/local.ini
 
-# Uprawnienia do zapisu w katalogach Laravel
-RUN chmod -R 777 /var/www/html/storage
-RUN chmod -R 777 /var/www/html/bootstrap/cache
+EXPOSE 9000
 
-# Kopiowanie skryptu startowego
-COPY start.sh /var/www/html/start.sh
-RUN chmod +x /var/www/html/start.sh
-
-EXPOSE 8000
-
-CMD ["/var/www/html/start.sh"]
+CMD ["php-fpm"]
