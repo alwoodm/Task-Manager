@@ -24,7 +24,32 @@ A simple but powerful task management application built with Laravel and modern 
 - PHP 8.2 or higher
 - Composer
 - Node.js and NPM
+- PHP SQLite extension (php-sqlite3)
 - (Optional) Docker and Docker Compose
+
+### Required PHP Extensions
+
+The application requires the SQLite PHP extension:
+
+```bash
+# For Ubuntu/Debian
+sudo apt-get install php-sqlite3
+
+# For Red Hat/CentOS
+sudo yum install php-sqlite3
+
+# For macOS with Homebrew
+brew install php
+
+# For Windows with XAMPP
+# Enable the sqlite3 extension in php.ini
+```
+
+To check if SQLite is installed, run:
+```bash
+php -m | grep sqlite
+# If installed, you should see "sqlite3" in the output
+```
 
 ### Standard Setup
 
@@ -66,6 +91,47 @@ A simple but powerful task management application built with Laravel and modern 
    ```
 
 7. Visit the application at http://localhost:8000
+
+## Quick Start
+
+The application can be set up with just a few commands:
+
+```bash
+# Run the setup script (recommended)
+./setup.sh
+
+# Or run these commands manually:
+php artisan update
+php artisan serve
+# In another terminal:
+npm run dev
+```
+
+### Database Options
+
+The application supports multiple database options:
+
+1. **SQLite** (default, requires php-sqlite3 extension)
+2. **MySQL** (configurable through .env)
+3. **File-based storage** (fallback when SQLite is unavailable, limited functionality)
+
+If you don't have the SQLite extension installed, the setup will guide you through alternative options.
+
+### Required PHP Extensions
+
+Make sure your PHP installation has the following extensions:
+- `pdo_sqlite` (for SQLite database)
+- or `pdo_mysql` (for MySQL database)
+
+To install SQLite support on Ubuntu/Debian:
+```bash
+sudo apt-get install php-sqlite3
+```
+
+To install MySQL support on Ubuntu/Debian:
+```bash
+sudo apt-get install php-mysql
+```
 
 ## Project Architecture
 
@@ -210,20 +276,7 @@ php artisan test --testsuite=Feature
 php artisan test --coverage
 ```
 
-## Artisan Commands
-
-The application includes custom Artisan commands:
-
-```bash
-# List all available commands
-php artisan list
-
-# Cleanup expired tasks
-php artisan tasks:cleanup
-
-# Generate task report
-php artisan tasks:report
-```
+<!-- Removed custom Artisan commands section -->
 
 ## License
 

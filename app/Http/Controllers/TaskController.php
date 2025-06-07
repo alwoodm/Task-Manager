@@ -41,6 +41,7 @@ class TaskController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'priority' => $request->priority ?? 2, // Default to medium priority
+            'is_completed' => false, 
         ]);
 
         return redirect()->route('tasks.index')->with('success', 'Task has been successfully added.');

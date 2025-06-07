@@ -33,13 +33,20 @@ return [
 
         'sqlite' => [
             'driver' => 'sqlite',
-            'url' => env('DB_URL'),
+            'url' => env('DATABASE_URL'),
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-            'busy_timeout' => null,
             'journal_mode' => null,
             'synchronous' => null,
+        ],
+        
+        // Custom file-based database that works without SQLite extension
+        'file' => [
+            'driver' => 'file',
+            'database' => env('DB_FILE_PATH', storage_path('app/database')),
+            'path' => env('DB_FILE_PATH', storage_path('app/database')),
+            'prefix' => '',
         ],
 
         'mysql' => [

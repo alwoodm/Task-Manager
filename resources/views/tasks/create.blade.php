@@ -31,11 +31,6 @@
             </select>
         </div>
 
-        <div class="flex items-center">
-            <input type="checkbox" name="is_completed" id="is_completed" value="1" {{ old('is_completed') ? 'checked' : '' }} class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded">
-            <label for="is_completed" class="ml-2 block text-sm text-gray-900 dark:text-gray-300">Mark as Completed</label>
-        </div>
-
         <div class="flex items-center justify-end pt-2">
             <a href="{{ route('tasks.index') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 mr-4 transition-colors">
                 Cancel
