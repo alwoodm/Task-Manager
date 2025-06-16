@@ -1,62 +1,67 @@
 # Task Manager
 
-A simple but powerful task management application built with Laravel and modern frontend technologies.
+## Project Description
 
-## Features
+Task Manager is a robust web application built with Laravel 12 that helps users organize and track their tasks efficiently. The application provides a modern, intuitive, and responsive interface for managing personal tasks with various priority levels.
 
-- User authentication and authorization
-- Create, read, update, and delete tasks
-- Mark tasks as completed/not completed
-- Responsive design with dark mode support
-- Simple and intuitive user interface
+### Main Features
 
-## Technologies Used
+- **User Authentication**: Secure registration and login system powered by Laravel Breeze
+- **Task Management**: Create, read, update, and delete tasks
+- **Task Status Tracking**: Mark tasks as completed/not completed
+- **Task Prioritization**: Assign low, medium, or high priority to tasks
+- **Responsive Design**: Works seamlessly across desktop and mobile devices
+- **Dark Mode Support**: Toggle between light and dark themes for comfortable viewing
 
-- **Backend**: Laravel 12
-- **Frontend**: Tailwind CSS, Alpine.js
-- **Database**: SQLite (default) / MySQL (configurable)
-- **Development**: Vite for frontend assets
+### Technologies Used
 
-## Local Development Setup
+**Backend**:
+- PHP 8.2+
+- Laravel 12
+- SQLite (default) / MySQL (configurable)
+- Redis (optional, for cache and session management)
 
-### Requirements
+**Frontend**:
+- Tailwind CSS for styling
+- Alpine.js for interactive components
+- Blade templating engine
+
+**Development & Deployment**:
+- Docker and Docker Compose for containerization
+- Vite for frontend asset compilation
+- Laravel Breeze for authentication scaffolding
+
+## Installation and Setup Instructions
+
+### System Requirements
 
 - PHP 8.2 or higher
 - Composer
 - Node.js and NPM
-- PHP SQLite extension (php-sqlite3)
-- (Optional) Docker and Docker Compose
+- PHP SQLite extension (for default database)
+- Docker and Docker Compose (for containerized setup)
 
 ### Required PHP Extensions
 
-The application requires the SQLite PHP extension:
+- `pdo_sqlite` (for SQLite database)
+- `pdo_mysql` (for MySQL database, if used)
+- Other standard Laravel extensions:
+  - BCMath
+  - Ctype
+  - Fileinfo
+  - JSON
+  - Mbstring
+  - OpenSSL
+  - PDO
+  - Tokenizer
+  - XML
 
-```bash
-# For Ubuntu/Debian
-sudo apt-get install php-sqlite3
-
-# For Red Hat/CentOS
-sudo yum install php-sqlite3
-
-# For macOS with Homebrew
-brew install php
-
-# For Windows with XAMPP
-# Enable the sqlite3 extension in php.ini
-```
-
-To check if SQLite is installed, run:
-```bash
-php -m | grep sqlite
-# If installed, you should see "sqlite3" in the output
-```
-
-### Standard Setup
+### Standard Setup (Local Development)
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/task-manager.git
-   cd task-manager
+   git clone [repository-url]
+   cd Task_Menger
    ```
 
 2. Install PHP dependencies
@@ -75,195 +80,241 @@ php -m | grep sqlite
    php artisan key:generate
    ```
 
-5. Create the database
-   ```bash
-   touch database/database.sqlite
-   php artisan migrate --seed # This will seed the database with sample tasks
-   ```
+5. Set up the database
+   - For SQLite (default):
+     ```bash
+     touch database/database.sqlite
+     php artisan migrate
+     ```
+   - For MySQL:
+     - Configure MySQL connection in .env file
+     - Run migrations:
+       ```bash
+       php artisan migrate
+       ```
 
 6. Start the development servers
    ```bash
-   # In one terminal
-   php artisan serve
-   
-   # In another terminal
-   npm run dev
+   npm run dev    # Start Vite development server
+   php artisan serve    # Start Laravel development server
    ```
 
 7. Visit the application at http://localhost:8000
 
-## Quick Start
+### Docker Setup
 
-The application can be set up with just a few commands:
+1. Clone the repository
+   ```bash
+   git clone [repository-url]
+   cd Task_Menger_Final
+   ```
 
-```bash
-# Run the setup script (recommended)
-./setup.sh
+2. Configure the environment file
+   ```bash
+   cp .env.example .env
+   ```
 
-# Or run these commands manually:
-php artisan update
-php artisan serve
-# In another terminal:
-npm run dev
-```
+3. Run the Docker initialization script
+   ```bash
+   chmod +x docker-init.sh
+   ./docker-init.sh
+   ```
 
-### Database Options
+4. Access the application at http://localhost:8000
 
-The application supports multiple database options:
+## User Guide
 
-1. **SQLite** (default, requires php-sqlite3 extension)
-2. **MySQL** (configurable through .env)
-3. **File-based storage** (fallback when SQLite is unavailable, limited functionality)
+### Registration and Authentication
 
-If you don't have the SQLite extension installed, the setup will guide you through alternative options.
-
-### Required PHP Extensions
-
-Make sure your PHP installation has the following extensions:
-- `pdo_sqlite` (for SQLite database)
-- or `pdo_mysql` (for MySQL database)
-
-To install SQLite support on Ubuntu/Debian:
-```bash
-sudo apt-get install php-sqlite3
-```
-
-To install MySQL support on Ubuntu/Debian:
-```bash
-sudo apt-get install php-mysql
-```
-
-## Project Architecture
-
-### Directory Structure
-
-The application follows the standard Laravel directory structure with some customizations:
-
-- `app/Models` - Contains all Eloquent models (Task, User)
-- `app/Http/Controllers` - Contains all controllers for handling requests
-- `app/Http/Requests` - Contains form request validation classes
-- `resources/views` - Contains all Blade templates
-- `resources/css` - Contains Tailwind CSS customizations
-- `resources/js` - Contains Alpine.js components
-
-### Key Components
-
-#### Models
-
-- `User` - Standard Laravel authentication model with tasks relationship
-- `Task` - The core model representing a task with properties:
-  - title - Task title
-  - description - Detailed task description
-  - completed - Boolean status flag
-  - user_id - Foreign key to the user who owns the task
-
-#### Controllers
-
-- `TaskController` - Handles CRUD operations for tasks
-- `DashboardController` - Manages the main dashboard display
-
-#### Services
-
-The application implements a service layer to separate business logic:
-
-- `TaskService` - Manages task creation, updating, and filtering
-
-### Database Structure
-
-The application uses migrations to define the database schema:
-
-- `users` - Standard Laravel authentication table
-- `tasks` - Stores all user tasks with relationships
-- `sessions` - Manages user sessions
-
-## Application Features
-
-### Authentication
-
-- Breeze-powered authentication system
-- Email verification (optional)
-- Password reset functionality
+1. Navigate to the registration page by clicking "Register" in the top navigation bar
+2. Fill in your name, email, and password
+3. Submit the registration form
+4. You will be automatically logged in and redirected to the task list
 
 ### Task Management
 
-- Task creation with form validation
-- Task listing with filters (all, completed, incomplete)
-- Task updating
-- Task completion toggling
-- Task deletion with confirmation
+#### Viewing Tasks
+- Upon login, you will be redirected to the task list page
+- All your tasks will be displayed with their title, description, priority level, and status
+- Completed tasks appear with a strikethrough text and green background
 
-### UI Components
+#### Creating Tasks
+1. Click the "Add New Task" button on the task list page
+2. Fill in the task details:
+   - Title (required)
+   - Description (optional)
+   - Priority (Low, Medium, High)
+3. Click "Add Task" to save
 
-- Custom Blade components for:
-  - Task cards
-  - Form inputs
-  - Modal dialogs
-  - Alert messages
+#### Editing Tasks
+1. Find the task you want to edit in the list
+2. Click the pencil (edit) icon
+3. Update the task details
+4. Click "Update Task" to save changes
 
-### Frontend Integration
+#### Completing Tasks
+1. Find the task you want to mark as complete
+2. Click the checkmark icon to toggle the completion status
+3. The task appearance will change to indicate its status
 
-The frontend leverages:
+#### Deleting Tasks
+1. Find the task you want to delete
+2. Click the trash (delete) icon
+3. Confirm the deletion when prompted
 
-- Tailwind CSS for styling with custom components
-- Alpine.js for interactive components
-- Laravel Vite integration for asset compilation
-- Dark mode toggle with browser storage persistence
+### User Interface Features
 
-## Customization
+#### Dark Mode
+- Click the sun/moon icon in the bottom-right corner to toggle between light and dark modes
+- Your preference is saved in the browser and will persist across sessions
 
-### Themes
+#### Responsive Design
+- The application is fully responsive and adapts to different screen sizes
+- Mobile users can access all features with an optimized interface
 
-The application supports both light and dark themes. The theme selection uses Alpine.js and is saved in the browser's local storage:
+## Architecture Overview
 
-```javascript
-x-data="{ darkMode: localStorage.getItem('dark') === 'true' }" 
-x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
+### Directory Structure
+
+```
+Task_Manager/
+├── app/                                # Application core
+│   ├── Models/                         # Data models
+│   │   ├── Task.php                    # Task model
+│   │   └── User.php                    # User model
+│   ├── Http/
+│   │   ├── Controllers/                # Request handlers
+│   │   │   └── TaskController.php      # Task CRUD operations
+│   │   └── Requests/                   # Form validation
+│   └── Providers/                      # Service providers
+├── database/
+│   ├── migrations/                     # Database structure
+│   │   ├── create_users_table.php
+│   │   ├── create_tasks_table.php
+│   │   └── add_priority_to_tasks_table.php
+│   ├── factories/                      # Model factories for testing
+│   └── seeders/                        # Database seeders
+├── resources/
+│   ├── views/                          # Blade templates
+│   │   ├── tasks/                      # Task-related views
+│   │   │   ├── index.blade.php         # Task list
+│   │   │   ├── create.blade.php        # Task creation form
+│   │   │   ├── edit.blade.php          # Task editing form
+│   │   │   └── show.blade.php          # Task details
+│   │   ├── layouts/                    # Template layouts
+│   │   └── components/                 # Reusable UI components
+│   ├── css/                            # Stylesheets
+│   └── js/                             # JavaScript files
+├── routes/                             # Application routes
+│   ├── web.php                         # Web routes
+│   └── auth.php                        # Authentication routes
+└── docker/                             # Docker configuration files
+    ├── mysql/                          # MySQL configuration
+    ├── nginx/                          # Nginx configuration
+    └── php/                            # PHP configuration
 ```
 
-### Languages
+### Database Schema
 
-Translations are stored in the `resources/lang/{locale}` directories. The application currently supports:
+#### Users Table
+| Column | Type | Description |
+|--------|------|-------------|
+| id | bigint | Primary key |
+| name | varchar | User's name |
+| email | varchar | User's email address (unique) |
+| password | varchar | Encrypted password |
+| created_at | timestamp | Creation timestamp |
+| updated_at | timestamp | Last update timestamp |
 
-- English (en) - Default
+#### Tasks Table
+| Column | Type | Description |
+|--------|------|-------------|
+| id | bigint | Primary key |
+| user_id | bigint | Foreign key to users table |
+| title | varchar | Task title |
+| description | text | Task description (nullable) |
+| is_completed | boolean | Completion status |
+| priority | integer | Task priority (1=Low, 2=Medium, 3=High) |
+| created_at | timestamp | Creation timestamp |
+| updated_at | timestamp | Last update timestamp |
 
-To add a new language, create a new directory in `resources/lang/` with the appropriate locale code and translate the strings in:
+### Component Interactions
 
-- `app.php` - Application-specific strings
-- `auth.php` - Authentication strings
-- `pagination.php` - Pagination strings
-- `validation.php` - Validation strings
+1. **Authentication Flow**:
+   - User submits login credentials
+   - Laravel authenticates via the AuthenticatedSessionController
+   - Upon successful authentication, user is redirected to task list
 
-## Extending the Application
+2. **Task Management Flow**:
+   - TaskController handles all CRUD operations
+   - Tasks are associated with users through a one-to-many relationship
+   - Access control ensures users can only manage their own tasks
 
-### Adding New Task Attributes
+3. **Frontend Integration**:
+   - Backend renders Blade templates
+   - Alpine.js provides reactivity for UI elements
+   - Tailwind CSS handles styling and responsive design
 
-To add new attributes to tasks:
+## Developer Instructions
 
-1. Create a new migration:
-   ```bash
-   php artisan make:migration add_priority_to_tasks_table
-   ```
+### Setting Up Development Environment
 
-2. Update the Task model with the new attribute
+1. Install the required tools:
+   - PHP 8.2+
+   - Composer
+   - Node.js and NPM
+   - SQLite or MySQL
 
-3. Modify the form views and controllers to handle the new attribute
+2. Follow the installation instructions in the previous section
+
+3. Configure your IDE:
+   - Enable PHP and Laravel extensions
+   - Configure code style to match Laravel standards
 
 ### Adding New Features
 
-The modular architecture makes it easy to add new features:
+#### Adding New Task Attributes
 
-1. Create new controllers using:
+1. Create a new migration:
    ```bash
-   php artisan make:controller FeatureController --resource
+   php artisan make:migration add_new_field_to_tasks_table
    ```
 
-2. Define routes in `routes/web.php`
+2. Define the migration schema and run it:
+   ```php
+   // In the migration file
+   Schema::table('tasks', function (Blueprint $table) {
+       $table->string('new_field')->nullable()->after('description');
+   });
+   ```
+   ```bash
+   php artisan migrate
+   ```
 
-3. Create corresponding views in `resources/views`
+3. Update the Task model with the new attribute:
+   ```php
+   // In app/Models/Task.php
+   protected $fillable = [
+       'title',
+       'description',
+       'user_id',
+       'is_completed',
+       'priority',
+       'new_field', // Added new field
+   ];
+   ```
 
-## Testing
+4. Modify the form views and controllers to handle the new attribute
 
-The application includes both feature and unit tests:
+#### Creating New Controllers
+
+```bash
+php artisan make:controller NewFeatureController --resource
+```
+
+### Testing
+
+Run the application tests using:
 
 ```bash
 # Run all tests
@@ -276,12 +327,72 @@ php artisan test --testsuite=Feature
 php artisan test --coverage
 ```
 
-<!-- Removed custom Artisan commands section -->
+### Deployment Process
 
-## License
+1. **Prerequisites**:
+   - Server with PHP 8.2+
+   - Composer
+   - Web server (Nginx or Apache)
+   - Database (SQLite or MySQL)
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2. **Deployment Steps**:
+   - Clone the repository to your production server
+   - Install dependencies: `composer install --no-dev --optimize-autoloader`
+   - Copy example environment file: `cp .env.example .env`
+   - Configure environment variables for production
+   - Generate application key: `php artisan key:generate`
+   - Run database migrations: `php artisan migrate --force`
+   - Compile assets: `npm install && npm run build`
+   - Configure web server to point to the public directory
+   - Set proper permissions on storage and bootstrap/cache directories
 
-## Credits
+3. **Docker Deployment**:
+   - Use the included docker-compose.yml for containerized deployment
+   - Configure environment variables as needed
+   - Run: `docker-compose up -d`
 
-Created and maintained by [alwood](https://alwood.ovh).
+## FAQ and Common Issues
+
+### General
+
+**Q: How do I reset my password?**  
+A: Click "Forgot your password?" on the login page and follow the instructions sent to your email.
+
+**Q: Can I share tasks with other users?**  
+A: The current version doesn't support task sharing. Each user can only see their own tasks.
+
+**Q: Is there a mobile app available?**  
+A: No native mobile app is available, but the web interface is fully responsive and works well on mobile devices.
+
+### Technical Issues
+
+**Q: The application is showing database connection errors**  
+A: 
+1. Verify your database configuration in the .env file
+2. For SQLite, ensure the database file exists and is writable
+3. For MySQL, check that the database, user, and password are correctly configured
+
+**Q: Dark mode isn't working properly**  
+A: 
+1. Make sure JavaScript is enabled in your browser
+2. Clear your browser cache and cookies
+3. Check your browser's localStorage settings
+
+**Q: How do I enable Redis for cache and sessions?**  
+A:
+1. Install Redis on your server or use the Docker Redis container
+2. Update your .env file with:
+   ```
+   CACHE_DRIVER=redis
+   SESSION_DRIVER=redis
+   REDIS_HOST=127.0.0.1
+   REDIS_PORT=6379
+   ```
+
+## Next Steps for Documentation Development
+
+1. **API Documentation**: Create comprehensive documentation for RESTful API endpoints (when implemented)
+2. **Localization Guide**: Instructions for adding new languages and translating the interface
+3. **Advanced Configuration**: Detailed guide for advanced server and application configuration
+4. **Performance Tuning**: Tips and best practices for optimizing application performance
+5. **Security Hardening**: Guidelines for enhancing application security in production environments
