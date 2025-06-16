@@ -28,3 +28,9 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+
+# Nie ignoruj plików Dockera
+!/docker/
+!/Dockerfile
+!/docker-compose.yml
+!/docker-init.sh
