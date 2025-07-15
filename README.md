@@ -60,8 +60,8 @@ Task Manager is a robust web application built with Laravel 12 that helps users 
 
 1. Clone the repository
    ```bash
-   git clone [repository-url]
-   cd Task_Menger
+   git clone https://github.com/alwoodm/Task-Manager.git
+   cd Task-Manager
    ```
 
 2. Install PHP dependencies
@@ -105,8 +105,8 @@ Task Manager is a robust web application built with Laravel 12 that helps users 
 
 1. Clone the repository
    ```bash
-   git clone [repository-url]
-   cd Task_Menger_Final
+   git clone https://github.com/alwoodm/Task-Manager.git
+   cd Task-Manager
    ```
 
 2. Configure the environment file
